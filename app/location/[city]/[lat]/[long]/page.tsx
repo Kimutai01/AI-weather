@@ -3,6 +3,7 @@ import { getClient } from "@/apollo-client";
 import fetchWeatherQueries from "@/graphql/queries/fetchWeatherQueries";
 import CallOutCard from "@/components/CallOutCard";
 import StatCard from "@/components/StatCard";
+import InformationPanel from "@/components/informationPanel";
 
 type Props = {
   params: {
@@ -27,10 +28,14 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
   const results: Root = data.myQuery;
 
-  console.log(results);
-
   return (
     <div>
+      <InformationPanel
+        city={city}
+        latitude={lat}
+        longitude={long}
+        results={results}
+      />
       <div className="p-5">
         <div>
           <h2 className="text-xl font-bold">Today's overview</h2>
@@ -85,7 +90,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
         <hr className="mb-5" />
         <div className="space-y-3">
           {/* Temp chart */}
-          
+
           {/* Rain chart */}
           {/* Humidity chart */}
         </div>
