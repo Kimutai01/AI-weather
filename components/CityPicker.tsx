@@ -14,7 +14,7 @@ type option = {
   label: string;
 } | null;
 
-type Cityoption = {
+type cityOption = {
   value: {
     latitude: string;
     longitude: string;
@@ -35,21 +35,20 @@ const options = Country.getAllCountries().map((country) => ({
 
 const CityPicker = () => {
   const [selectedCountry, setSelectedCountry] = useState<option>();
-  const [selectedCity, setSelectedCity] = useState<Cityoption>();
+  const [selectedCity, setSelectedCity] = useState<cityOption>();
+  const router = useRouter();
 
   const handleSelectCountry = (option: option) => {
     setSelectedCountry(option);
     setSelectedCity(null);
   };
 
-  const handleSelectedCity = (option: Cityoption) => {
+  const handleSelectedCity = (option: cityOption) => {
     setSelectedCity(option);
     router.push(
       `/location/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`
     );
   };
-
-  const router = useRouter();
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -74,12 +73,13 @@ const CityPicker = () => {
             className="text-black"
             value={selectedCity}
             onChange={handleSelectedCity}
-            options={City.getCitiesOfCountry(
+            options={
+              City.getCitiesOfCountry(
               selectedCountry.value.isoCode
             )?.map((city) => ({
               value: {
-                latitude: city.latitude,
-                longitude: city.longitude,
+                latitude: city.latitude!,
+                longitude: city.longitude!,
                 countryCode: city.countryCode,
                 name: city.name,
                 stateCode: city.stateCode,

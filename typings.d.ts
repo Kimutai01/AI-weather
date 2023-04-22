@@ -1,99 +1,78 @@
-// type Daily {
-//   temperature_2m_max: [Float]
-//   time: [Date]
-//   weathercode: [Int]
-// }
-// type DailyUnits {
-//   temperature_2m_max: String
-//   time: String
-//   weathercode: String
-// }
-// type Hourly {
-//   apparent_temperature: [Float]
-//   dewpoint_2m: [Float]
-//   precipitation_probability: [Int]
-//   relativehumidity_2m: [Int]
-//   temperature_2m: [Float]
-//   time: [DateTime]
-//   uv_index: [Float]
-//   uv_index_clear_sky: [Float]
-// }
-// type HourlyUnits {
-//   apparent_temperature: String
-//   dewpoint_2m: String
-//   precipitation_probability: String
-//   relativehumidity_2m: String
-//   temperature_2m: String
-//   time: String
-//   uv_index: String
-//   uv_index_clear_sky: String
-// }
-// type Root {
-//   current_weather: CurrentWeather
-//   daily: Daily
-//   daily_units: DailyUnits
-//   elevation: Int
-//   generationtime_ms: Float
-//   hourly: Hourly
-//   hourly_units: HourlyUnits
-//   latitude: Float
-//   longitude: Float
-//   timezone: String
-//   timezone_abbreviation: String
-//   utc_offset_seconds: Int
-// }
-
-interface CurrentWeather {
+interface currentWeather {
   is_day: number;
   temperature: number;
-  time: number;
-  WeatherCode: number;
-  WindDirection: number;
-  WindSpeed: number;
+  time: string;
+  weathercode: number;
+  winddirection: number;
+  windspeed: number;
 }
 
-interface Daily {
+interface daily {
+  apparent_temperature_max: [number];
+  apparent_temperature_min: [number];
+  sunrise: [string];
+  sunset: [string];
+  temperature_2m_max: [number];
+  temperature_2m_min: [number];
+  time: [string];
+  uv_index_clear_sky_max: [number];
+  uv_index_max: [number];
+  weathercode: [number];
+}
+
+interface dailyUnits {
+  apparent_temperature_max: string;
+  apparent_temperature_min: string;
+  sunrise: string;
+  sunset: string;
   temperature_2m_max: string;
+  temperature_2m_min: string;
   time: string;
+  uv_index_clear_sky_max: string;
+  uv_index_max: string;
   weathercode: string;
 }
 
-interface DailyUnits {
-  temperature_2m_max: string;
-  time: string;
-  weathercode: string;
-}
-
-interface Hourly {
+interface hourly {
   apparent_temperature: [number];
-  dewpoint_2m: string;
+  precipitation: [number];
   precipitation_probability: [number];
+  rain: [number];
   relativehumidity_2m: [number];
-  temperature_2m: string;
-  time: string;
-  uv_index: string;
-  uv_index_clear_sky: string;
+  showers: [number];
+  snow_depth: [number];
+  snowfall: [number];
+  temperature_2m: [number];
+  time: [string];
+  uv_index: [number];
+  uv_index_clear_sky: [number];
+  windgusts_10m: [number];
 }
 
-interface HourlyUnits {
+interface hourlyUnits {
   apparent_temperature: string;
-  dewpoint_2m: string;
+  precipitation: string;
   precipitation_probability: string;
+  rain: string;
   relativehumidity_2m: string;
+  showers: string;
+  snow_depth: string;
+  snowfall: string;
   temperature_2m: string;
   time: string;
   uv_index: string;
   uv_index_clear_sky: string;
+  windgusts_10m: string;
 }
 
 interface Root {
-  current_weather: CurrentWeather;
-  daily: Daily;
-  daily_units: DailyUnits;
+  current_weather: currentWeather;
+  daily: daily;
+  daily_units: dailyUnits;
   elevation: number;
   generationtime_ms: number;
-  hourly: Hourly;
-  hourly_units: HourlyUnits;
+  hourly: hourly;
+  hourly_units: hourlyUnits;
   latitude: number;
   longitude: number;
   timezone: string;
