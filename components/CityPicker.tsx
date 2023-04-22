@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
 import { useRouter } from "next/navigation";
+import { GlobeIcon } from "@heroicons/react/solid";
 
 type option = {
   value: {
-    latitude: number;
-    longitude: number;
+    latitude: string;
+    longitude: string;
     isoCode: string;
   };
   label: string;
@@ -15,8 +16,8 @@ type option = {
 
 type Cityoption = {
   value: {
-    latitude: number;
-    longitude: number;
+    latitude: string;
+    longitude: string;
     countryCode: string;
     name: string;
     stateCode: string;
@@ -41,18 +42,51 @@ const CityPicker = () => {
     setSelectedCity(null);
   };
 
+  const handleSelectedCity = (option: Cityoption) => {
+    setSelectedCity(option);
+    // router.push(`/location/${option?.value.latitude}/${option?.value.longitude}`);
+  };
+
   const router = useRouter();
   return (
-    <div>
-      <div>
-        <label htmlFor="country">Country</label>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <GlobeIcon className="h-5 w-5 text-white" aria-hidden="true" />
+          <label htmlFor="country">Country</label>
+        </div>
+        <Select
+          className="text-black"
+          value={selectedCountry}
+          onChange={handleSelectCountry}
+          options={options}
+        />
       </div>
-      <Select
-        className="text-black"
-        value={selectedCountry}
-        onChange={handleSelectCountry}
-        options={options}
-      />
+      {selectedCountry && (
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2">
+            <GlobeIcon className="h-5 w-5 text-white" />
+            <label htmlFor="country">City</label>
+          </div>
+          <Select
+            className="text-black"
+            value={selectedCity}
+            onChange={handleSelectedCity}
+            options={City.getCitiesOfCountry(
+              selectedCountry.value.isoCode
+            )?.map((city) => ({
+              value: {
+                latitude: city.latitude,
+                longitude: city.longitude,
+                countryCode: city.countryCode,
+                name: city.name,
+                stateCode: city.stateCode,
+              },
+              label: city.name,
+            }))}
+          />
+        </div>
+      )}
     </div>
   );
 };
