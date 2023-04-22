@@ -1,6 +1,7 @@
 "use client";
 import { Inter } from "next/font/google";
 import { Card, Divider, Subtitle, Text } from "@tremor/react";
+import CityPicker from "@/components/CityPicker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ export default function Home() {
           className="
         bg-gradient-to-r from-blue-400 to-blue-500
         "
-        ></Card>
+        >
+          <CityPicker />
+        </Card>
       </Card>
       <h1>GPT3 weather app</h1>
     </div>
