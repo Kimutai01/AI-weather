@@ -44,7 +44,9 @@ const CityPicker = () => {
 
   const handleSelectedCity = (option: Cityoption) => {
     setSelectedCity(option);
-    // router.push(`/location/${option?.value.latitude}/${option?.value.longitude}`);
+    router.push(
+      `/location/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`
+    );
   };
 
   const router = useRouter();
@@ -66,7 +68,7 @@ const CityPicker = () => {
         <div className="space-y-2">
           <div className="flex items-center space-x-2">
             <GlobeIcon className="h-5 w-5 text-white" />
-            <label htmlFor="country">City</label>
+            <label htmlFor="country">Region</label>
           </div>
           <Select
             className="text-black"
