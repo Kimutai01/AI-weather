@@ -22,8 +22,8 @@ function InformationPanel({ city, lat, long, results }: Props) {
       </div>
       <CityPicker />
       <hr className="my-10" />
-      <div>
-        <div className="mt-5 flex flex-col items-center justify-between space-x-10 mb-5">
+      <div className="flex space-between items-center align-center">
+        <div className="mt-5 flex flex-col justify-between space-x-10 mb-5">
           <p>
             {new Date().toLocaleDateString("en-GB", {
               weekday: "long",
@@ -33,7 +33,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
             })}
           </p>
 
-          <p className="font extralight">
+          <p className="font-extralight">
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
@@ -47,26 +47,52 @@ function InformationPanel({ city, lat, long, results }: Props) {
         </p>
       </div>
       <hr className="mb-10 mt-5" />
-      <div>
+      <div className="flex items-center justify-between">
         <div>
           {/*image*/}
           <Image
             src={`https://www.weatherbit.io/static/img/icons/${
               weatherCodeToString[results.current_weather.weathercode].icon
             }.png`}
-            width={100}
-            height={100}
+            width={75}
+            height={75}
             alt="Weather Icon"
           />
 
-          <div>
-            <p>{results.current_weather.temperature.toFixed(1)}°C</p>
-            <p>
+          <div className="flex items-center justify-between space-x-10">
+            <p className="text-6xl semibold">
+              {results.current_weather.temperature.toFixed(1)}°C
+            </p>
+            <p className="text-right font-extralight text-lg">
               {/*Weather Code*/}
               {weatherCodeToString[results.current_weather.weathercode].label}
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="flex items-center space-x-2 px-4 py-3 rounded-md bg-[#405885]">
+        <SunIcon className="h-5 w-5 text-yellow-400" />
+        <p className="text-sm font-extralight">Sunrise</p>
+        <p className="text-sm font-extralight">
+          {new Date(results.daily.sunrise[0]).toLocaleTimeString("en-GB", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          })}
+        </p>
+      </div>
+
+      <div className="flex items-center space-x-2 px-4 py-3 mt-5 rounded-md bg-[#405885]">
+        <MoonIcon className="h-5 w-5 text-yellow-400" />
+        <p className="text-sm font-extralight">Sunset</p>
+        <p className="text-sm font-extralight">
+          {new Date(results.daily.sunset[0]).toLocaleTimeString("en-GB", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          })}
+        </p>
       </div>
     </div>
   );
