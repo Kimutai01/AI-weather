@@ -55,9 +55,9 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
       <InformationPanel city={city} results={results} />
       <div className="p-5">
         <div>
-          <h2 className="text-xl font-bold">Today's overview</h2>
+          <h2 className="text-xl font-bold">Todays overview</h2>
           <p className="text-sm text-gray-400">
-            last updated at:{" "}
+            last updated at:
             {new Date(results.current_weather.time).toLocaleString()} (
             {results.timezone})
           </p>
