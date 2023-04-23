@@ -1,6 +1,8 @@
 import React from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import CityPicker from "./CityPicker";
+import weatherCodeToString from "@/lib/weatherCodeToString";
+import Image from "next/image";
 
 type Props = {
   city: string;
@@ -48,12 +50,20 @@ function InformationPanel({ city, lat, long, results }: Props) {
       <div>
         <div>
           {/*image*/}
+          <Image
+            src={`https://www.weatherbit.io/static/img/icons/${
+              weatherCodeToString[results.current_weather.weathercode].icon
+            }.png`}
+            width={100}
+            height={100}
+            alt="Weather Icon"
+          />
 
           <div>
             <p>{results.current_weather.temperature.toFixed(1)}°C</p>
-            <p>{/*Weather Code*/}
-            
-            
+            <p>
+              {/*Weather Code*/}
+              {weatherCodeToString[results.current_weather.weathercode].label}
             </p>
           </div>
         </div>
