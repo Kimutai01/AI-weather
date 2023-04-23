@@ -7,14 +7,14 @@ type Props = {
 };
 
 function TempChart({ results }: Props) {
-  const hourly = results?.hourly.time.map((time) => {
-    return new Date(time)
-      .toLocaleTimeString("en-US", {
+  const hourly = results?.hourly.time
+    .map((time) => {
+      return new Date(time).toLocaleTimeString("en-US", {
         hour: "numeric",
         hour12: false,
-      })
-      .slice(0, 24);
-  });
+      });
+    })
+    .slice(0, 24);
 
   const data = hourly.map((time, index) => {
     return {
