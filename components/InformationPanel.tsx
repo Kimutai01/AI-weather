@@ -11,8 +11,8 @@ type Props = {
 
 function InformationPanel({ city, lat, long, results }: Props) {
   return (
-    <div className="bg-gradient-to-r from-blue-400 to-blue-500 ">
-      <div p-10>
+    <div className="bg-gradient-to-r from-blue-400 to-blue-500 p-10">
+      <div className="">
         <h1 className="text-6xl font-bold">{decodeURI(city)}</h1>
         <p>
           Long/Lat: {results.longitude}/{results.latitude}
@@ -21,7 +21,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
       <CityPicker />
       <hr className="my-10" />
       <div>
-        <div className="mt-5 flex items-center justify-between space-x-10 mb-5">
+        <div className="mt-5 flex flex-col items-center justify-between space-x-10 mb-5">
           <p>
             {new Date().toLocaleDateString("en-GB", {
               weekday: "long",
@@ -31,7 +31,9 @@ function InformationPanel({ city, lat, long, results }: Props) {
             })}
           </p>
 
-          <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+          <p className="font extralight">
+            Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
+          </p>
         </div>
 
         <p className="text-xl font-bold uppercase">
@@ -41,6 +43,20 @@ function InformationPanel({ city, lat, long, results }: Props) {
             hour12: true,
           })}
         </p>
+      </div>
+      <hr className="mb-10 mt-5" />
+      <div>
+        <div>
+          {/*image*/}
+
+          <div>
+            <p>{results.current_weather.temperature.toFixed(1)}°C</p>
+            <p>{/*Weather Code*/}
+            
+            
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
