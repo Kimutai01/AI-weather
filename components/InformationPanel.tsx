@@ -6,12 +6,10 @@ import Image from "next/image";
 
 type Props = {
   city: string;
-  lat: string;
-  long: string;
   results: Root;
 };
 
-function InformationPanel({ city, lat, long, results }: Props) {
+function InformationPanel({ city, results }: Props) {
   return (
     <div className="bg-gradient-to-r from-blue-400 to-blue-500 p-10">
       <div className="">

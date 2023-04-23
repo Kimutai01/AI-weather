@@ -20,7 +20,6 @@ export default function Home() {
           <CityPicker />
         </Card>
       </Card>
-      <h1>GPT3 weather app</h1>
     </div>
   );
 }
