@@ -80,7 +80,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           <div>
             <StatCard
               title="UV Index"
-              metric={`${results.daily.uv_index_max[0].toFixed(1)}°C`}
+              metric={`${results.daily.uv_index_max[0].toFixed(1)} °C`}
               color="yellow"
             />
             <hr className="mb-4" />
@@ -95,12 +95,12 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           <div className="flex space-x-3">
             <StatCard
               title="Wind speed"
-              metric={`${results.current_weather.windspeed.toFixed(1)}°C`}
+              metric={`${results.current_weather.windspeed.toFixed(1)} m/s`}
               color="cyan"
             />
             <StatCard
               title="Wind direction"
-              metric={`${results.current_weather.winddirection.toFixed(1)}°C`}
+              metric={`${results.current_weather.winddirection.toFixed(1)} m/s`}
               color="violet"
             />
           </div>

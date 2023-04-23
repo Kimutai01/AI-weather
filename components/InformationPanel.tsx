@@ -35,7 +35,6 @@ function InformationPanel({ city, results }: Props) {
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
-
         <p className="text-xl font-bold uppercase">
           {new Date().toLocaleTimeString("en-GB", {
             hour: "numeric",
