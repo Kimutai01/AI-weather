@@ -88,7 +88,8 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
               metric={`${results.daily.uv_index_max[0].toFixed(1)}°C`}
               color="yellow"
             />
-            {Number(results.daily.uv_index_max[0].toFixed(1)) > 5 && (
+            <hr className="mb-4" />
+            {Number(results.daily.uv_index_max[0].toFixed(1)) > 7 && (
               <CallOutCard
                 message="UV Index is high, please wear sunscreen"
                 warning

@@ -22,8 +22,8 @@ function InformationPanel({ city, lat, long, results }: Props) {
       </div>
       <CityPicker />
       <hr className="my-10" />
-      <div className="flex space-between items-center align-center">
-        <div className="mt-5 flex flex-col justify-between space-x-10 mb-5">
+      <div className="flex space-between items-center ">
+        <div className="mt-5 flex flex-col justify-between mb-5">
           <p>
             {new Date().toLocaleDateString("en-GB", {
               weekday: "long",
